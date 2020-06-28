@@ -68,7 +68,10 @@ export default function Home({ data }) {
 
     <section className="hero">
       <figure>
-        <Img fluid={data.hero.childImageSharp.fluid} alt="" />
+        <Img
+          fluid={data.hero.childImageSharp.fluid}
+          style={{ height: "100%" }}
+          alt="" />
       </figure>
       <div className="catch">
         <h1>There is no love sincerer than<br /> the love of food.</h1>
@@ -118,7 +121,11 @@ export default function Home({ data }) {
     <section className="photo">
       <h2 className="sr-only">Photo</h2>
       <figure>
-        <Img fluid={data.berry.childImageSharp.fluid} alt="赤く熟したベリー" />
+        <Img
+          fluid={data.berry.childImageSharp.fluid}
+          alt="赤く熟したベリー"
+          style={{ height: "100%" }}
+        />
       </figure>
     </section>
 
