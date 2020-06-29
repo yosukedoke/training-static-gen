@@ -19,7 +19,7 @@ query {
 }
 `
 
-export default function Home({ data }) {
+export default function About({ data }) {
   return (
     <Layout>
       <div className="eyecatch">
