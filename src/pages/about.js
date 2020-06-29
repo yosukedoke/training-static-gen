@@ -6,39 +6,7 @@ import Layout from '../components/layout'
 
 export const query = graphql`
 query {
-  hero: file(relativePath: {eq: "hero.jpg"}) {
-    relativePath
-    childImageSharp {
-      fluid(maxWidth: 1600) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
-    }
-  }
-  fruit: file(relativePath: {eq: "fruit.jpg"}) {
-    relativePath
-    childImageSharp {
-      fluid(maxWidth: 320) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
-    }
-  }
-  grain: file(relativePath: {eq: "grain.jpg"}) {
-    relativePath
-    childImageSharp {
-      fluid(maxWidth: 320) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
-    }
-  }
-  beverage: file(relativePath: {eq: "beverage.jpg"}) {
-    relativePath
-    childImageSharp {
-      fluid(maxWidth: 320) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
-    }
-  }
-  berry: file(relativePath: {eq: "berry.jpg"}) {
+  about: file(relativePath: {eq: "about.jpg"}) {
     relativePath
     childImageSharp {
       fluid(maxWidth: 1600) {
@@ -54,7 +22,11 @@ export default function Home({ data }) {
     <Layout>
       <div className="eyecatch">
         <figure>
-          <img src="/images/about.jpg" alt="ブルーベリー＆ヨーグルト" />
+          <Img
+            fluid={data.about.childImageSharp.fluid}
+            alt="ブルーベリー＆ヨーグルト"
+            style={{ height: '100%' }}
+          />
           </figure>
       </div>
 
