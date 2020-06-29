@@ -33,6 +33,15 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
         description
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+          url
+        }
       }
       content {
         json
@@ -73,6 +82,9 @@ const BlogPost = ({ data, pageContext, location }) => (
       pageTitle={data.contentfulBlogPost.title}
       pageDesc={`${documentToPlainTextString(data.contentfulBlogPost.content.json).slice(0, 70)}`}
       pagePath={location.pathname}
+      pageOgImageForBlogPost={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
+      pageOgImageWidth={data.contentfulBlogPost.eyecatch.file.details.image.width}
+      pageOgImageHeight={data.contentfulBlogPost.eyecatch.file.details.image.height}
     />
     <div className="eyecatch">
       <figure>
