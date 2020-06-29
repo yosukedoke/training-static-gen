@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from '../components/layout'
+import MetaData from '../components/meta-data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUtensils, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,14 +15,26 @@ query {
       fluid(maxWidth: 1600) {
         ...GatsbyImageSharpFluid_withWebp
       }
+      original {
+        height
+        src
+        width
+      }
     }
   }
 }
 `
 
-export default function Home({ data }) {
+export default function About({ data, location }) {
   return (
     <Layout>
+      <MetaData
+        pageTitle="ESSENTIALについて"
+        pagePath={location.pathname}
+        pageOgImage={data.about.childImageSharp.original.src}
+        pageOgImageWidth={data.about.childImageSharp.original.width}
+        pageOgImageHeight={data.about.childImageSharp.original.height}
+      />
       <div className="eyecatch">
         <figure>
           <Img
