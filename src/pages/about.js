@@ -20,11 +20,12 @@ query {
 }
 `
 
-export default function About({ data }) {
+export default function About({ data, location }) {
   return (
     <Layout>
       <MetaData
         pageTitle="ESSENTIALについて"
+        pagePath={location.pathname}
       />
       <div className="eyecatch">
         <figure>
