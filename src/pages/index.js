@@ -47,6 +47,14 @@ query {
       }
     }
   }
+  pattern: file(relativePath: {eq: "pattern.jpg"}) {
+    relativePath
+    childImageSharp {
+      fluid(maxWidth: 1920) {
+        ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+  }
 }
 `
 
@@ -118,6 +126,6 @@ export default function Home({ data }) {
       </figure>
     </section>
 
-    <Footer />
+    <Footer backgroundImageFluid={data.pattern.childImageSharp.fluid} />
   </div>)
 }
