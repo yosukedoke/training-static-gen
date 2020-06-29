@@ -16,6 +16,31 @@ import useContentfulImage from '../utils/useContentfulImage'
 
 import Layout from '../components/layout'
 import MetaData from '../components/meta-data'
+
+export const query = graphql`
+  query($id: String!) {
+    contentfulBlogPost(id: { eq: $id }) {
+      title
+      publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
+      publishDate
+      category {
+        id
+        category
+        categorySlug
+      }
+      eyecatch {
+        fluid(maxWidth: 1600) {
+          ...GatsbyContentfulFluid_withWebp
+        }
+        description
+      }
+      content {
+        json
+      }
+    }
+  }
+`
+
 const options = {
   renderNode: {
     [BLOCKS.HEADING_2]: (node, children) => (
@@ -41,30 +66,6 @@ const options = {
     }, [])
   },
 }
-
-export const query = graphql`
-query($id: String!) {
-  contentfulBlogPost(id: { eq: $id }) {
-    title
-    publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
-    publishDate
-    category {
-      id
-      category
-      categorySlug
-    }
-    eyecatch {
-      fluid(maxWidth: 1600) {
-        ...GatsbyContentfulFluid_withWebp
-      }
-      description
-    }
-    content {
-      json
-    }
-  }
-}
-`
 
 const BlogPost = ({ data, pageContext, location }) => (
   <Layout>
