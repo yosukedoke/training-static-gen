@@ -6,6 +6,11 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: 'ESSENTIAL',
+    description: 'おいしい食材と食事を探求するサイト',
+    lang: 'ja',
+  },
   plugins: [
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
