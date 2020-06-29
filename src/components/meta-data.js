@@ -9,6 +9,7 @@ const MetaData = ({
     pageOgImage = null,
     pageOgImageWidth = 1280,
     pageOgImageHeight = 640,
+    pageOgImageForBlogPost = null
   }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -29,7 +30,9 @@ const MetaData = ({
   const description = pageDesc || data.site.siteMetadata.description
   const url = pagePath ? `${data.site.siteMetadata.siteUrl}${pagePath}` : data.site.siteMetadata.siteUrl
 
-  const ogImage = pageOgImage ? `${data.site.siteMetadata.siteUrl}${pageOgImage}` : `${data.site.siteMetadata.siteUrl}/thumb.jpg`
+  const ogImage = pageOgImage
+    ? `${data.site.siteMetadata.siteUrl}${pageOgImage}`
+    : (pageOgImageForBlogPost || `${data.site.siteMetadata.siteUrl}/thumb.jpg`)
 
   return (
     <Helmet>
