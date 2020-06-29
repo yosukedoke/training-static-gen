@@ -72,7 +72,6 @@ export default function Home({ data }) {
       </div>
     </section>
 
-
     <section className="food">
       <div className="container">
         <h2 className="bar">Food <span>Essence</span></h2>
