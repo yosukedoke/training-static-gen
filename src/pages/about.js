@@ -3,6 +3,8 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from '../components/layout'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUtensils, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 
 export const query = graphql`
 query {
@@ -36,7 +38,7 @@ export default function Home({ data }) {
 
               <aside className="info">
                   <div className="subtitle">
-                      <i className="fas fa-utensils" />
+                      <FontAwesomeIcon icon={faUtensils} />
                       ABOUT ESSENTIALS
                   </div>
               </aside>
@@ -44,7 +46,7 @@ export default function Home({ data }) {
           <div className="postbody">
             <p>体に必要不可欠な食べ物についての情報を発信しているサイトです。「おいしい食材をおいしく食べる」をモットーにしています。特に力を入れているのが、フルーツ、穀物、飲み物の３つです。</p>
 
-            <h2><i className="fas fa-check-square" />公開している記事</h2>
+            <h2><FontAwesomeIcon icon={faCheckSquare} />公開している記事</h2>
 
             <p>これらについて、次のような記事やレシピなどを書いて公開しています。</p>
 
@@ -54,7 +56,7 @@ export default function Home({ data }) {
               <li>ユーザー間のオープンなコミュニケーションを基盤とした情報。</li>
             </ul>
 
-            <h2><i className="fas fa-check-square" />よく聞かれること</h2>
+            <h2><FontAwesomeIcon icon={faCheckSquare} />よく聞かれること</h2>
 
             <p>よく聞かれることなのですが、私たちはスタートアップではありません。私たちはまだスタートしたばかりで、より多くの人々が食べやすい食べ物がもたらす違いを発見できるように、成長しサービスを改善する機会を待っています。</p>
 
