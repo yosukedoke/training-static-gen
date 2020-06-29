@@ -23,7 +23,9 @@ query {
 export default function About({ data }) {
   return (
     <Layout>
-      <MetaData />
+      <MetaData
+        pageTitle="ESSENTIALについて"
+      />
       <div className="eyecatch">
         <figure>
           <Img

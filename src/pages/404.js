@@ -5,7 +5,9 @@ import MetaData from '../components/meta-data'
 
 const NotFound = () => (
   <Layout>
-    <MetaData />
+    <MetaData
+      pageTitle="ページが見つかりません"
+    />
     <h1 style={{ padding: '20vh 0', textAlign: 'center' }}>お探しのページが見つかりませんでした</h1>
   </Layout>
 )
