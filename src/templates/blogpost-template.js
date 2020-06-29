@@ -1,7 +1,5 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Layout from '../components/layout'
-import MetaData from '../components/meta-data'
 import Img from 'gatsby-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faFolderOpen } from '@fortawesome/free-regular-svg-icons'
@@ -12,8 +10,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
+
 import useContentfulImage from '../utils/useContentfulImage'
 
+import Layout from '../components/layout'
+import MetaData from '../components/meta-data'
 const options = {
   renderNode: {
     [BLOCKS.HEADING_2]: (node, children) => (
