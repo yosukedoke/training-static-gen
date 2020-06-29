@@ -6,6 +6,9 @@ const MetaData = ({
     pageTitle = null,
     pageDesc = null,
     pagePath = null,
+    pageOgImage = null,
+    pageOgImageWidth = 1280,
+    pageOgImageHeight = 640,
   }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -26,6 +29,8 @@ const MetaData = ({
   const description = pageDesc || data.site.siteMetadata.description
   const url = pagePath ? `${data.site.siteMetadata.siteUrl}${pagePath}` : data.site.siteMetadata.siteUrl
 
+  const ogImage = pageOgImage ? `${data.site.siteMetadata.siteUrl}${pageOgImage}` : `${data.site.siteMetadata.siteUrl}/thumb.jpg`
+
   return (
     <Helmet>
       <html lang={data.site.siteMetadata.lang} />
@@ -38,7 +43,11 @@ const MetaData = ({
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:locale" content={data.site.siteMetadata.locale} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content={pageOgImageWidth} />
+      <meta property="og:image:height" content={pageOgImageHeight} />
       <meta property="fb:app_id" content={data.site.siteMetadata.fbAppId} />
+      <meta property="twitter:card" content="summary_large_image" />
     </Helmet>
   )
 }

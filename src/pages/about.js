@@ -15,6 +15,11 @@ query {
       fluid(maxWidth: 1600) {
         ...GatsbyImageSharpFluid_withWebp
       }
+      original {
+        height
+        src
+        width
+      }
     }
   }
 }
@@ -26,6 +31,9 @@ export default function About({ data, location }) {
       <MetaData
         pageTitle="ESSENTIALについて"
         pagePath={location.pathname}
+        pageOgImage={data.about.childImageSharp.original.src}
+        pageOgImageWidth={data.about.childImageSharp.original.width}
+        pageOgImageHeight={data.about.childImageSharp.original.height}
       />
       <div className="eyecatch">
         <figure>
