@@ -11,6 +11,8 @@ module.exports = {
     description: 'おいしい食材と食事を探求するサイト',
     lang: 'ja',
     siteUrl: 'https://ydniku-tranining-static-gen.netlify.app',
+    locale: 'ja_JP',
+    fbAppId: '',
   },
   plugins: [
     'gatsby-transformer-sharp',
