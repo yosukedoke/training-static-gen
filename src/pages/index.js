@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from '../components/layout'
+import MetaData from '../components/meta-data'
 
 export const query = graphql`
 query {
@@ -52,6 +53,7 @@ query {
 export default function Home({ data }) {
   return (
     <Layout>
+      <MetaData />
       <section className="hero">
         <figure>
           <Img
