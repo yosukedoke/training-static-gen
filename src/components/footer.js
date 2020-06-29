@@ -1,7 +1,21 @@
 import React from 'react'
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
-const Footer = ({ backgroundImageFluid }) => {
+const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      pattern: file(relativePath: {eq: "pattern.jpg"}) {
+        relativePath
+        childImageSharp {
+          fluid(maxWidth: 1920, quality: 90) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `)
+
   return (<footer className="footer">
     <div className="container">
       <div className="site">
@@ -38,7 +52,7 @@ const Footer = ({ backgroundImageFluid }) => {
     </div>
     <div className="back">
       <Img
-        fluid={backgroundImageFluid}
+        fluid={data.pattern.childImageSharp.fluid}
         alt=""
         style={{ height: "100%" }}  
       />  
