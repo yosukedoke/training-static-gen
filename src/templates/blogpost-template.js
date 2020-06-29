@@ -9,6 +9,7 @@ import {
   faCheckSquare,
 } from '@fortawesome/free-solid-svg-icons'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 
 import useContentfulImage from '../utils/useContentfulImage'
@@ -69,6 +70,7 @@ const BlogPost = ({ data, pageContext, location }) => (
   <Layout>
     <MetaData
       pageTitle={data.contentfulBlogPost.title}
+      pageDesc={`${documentToPlainTextString(data.contentfulBlogPost.content.json).slice(0, 70)}`}
       pagePath={location.pathname}
     />
     <div className="eyecatch">
