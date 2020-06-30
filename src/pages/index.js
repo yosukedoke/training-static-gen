@@ -4,49 +4,10 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import MetaData from '../components/meta-data'
+import Image from '../components/image'
 
 export const query = graphql`
   query {
-    hero: file(relativePath: { eq: "hero.jpg" }) {
-      relativePath
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    fruit: file(relativePath: { eq: "fruit.jpg" }) {
-      relativePath
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    grain: file(relativePath: { eq: "grain.jpg" }) {
-      relativePath
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    beverage: file(relativePath: { eq: "beverage.jpg" }) {
-      relativePath
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    berry: file(relativePath: { eq: "berry.jpg" }) {
-      relativePath
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
     allContentfulBlogPost(
       sort: { fields: publishDate, order: DESC }
       skip: 0
@@ -74,13 +35,7 @@ export default function Home({ data }) {
     <Layout>
       <MetaData />
       <section className="hero">
-        <figure>
-          <Img
-            fluid={data.hero.childImageSharp.fluid}
-            style={{ height: '100%' }}
-            alt=""
-          />
-        </figure>
+        <Image fileName="hero.jpg" style={{ height: '100%' }} alt="" />
         <div className="catch">
           <h1>
             There is no love sincerer than
@@ -111,9 +66,7 @@ export default function Home({ data }) {
 
           <div className="details">
             <div className="detail">
-              <figure>
-                <Img fluid={data.fruit.childImageSharp.fluid} alt="" />
-              </figure>
+              <Image fileName="fruit.jpg" alt="" />
               <h3>フルーツ</h3>
               <p>FRUIT</p>
               <p>
@@ -124,9 +77,7 @@ export default function Home({ data }) {
             </div>
 
             <div className="detail">
-              <figure>
-                <Img fluid={data.grain.childImageSharp.fluid} alt="" />
-              </figure>
+              <Image fileName="grain.jpg" alt="" />
               <h3>穀物</h3>
               <p>GRAIN</p>
               <p>
@@ -137,9 +88,7 @@ export default function Home({ data }) {
             </div>
 
             <div className="detail">
-              <figure>
-                <Img fluid={data.beverage.childImageSharp.fluid} alt="" />
-              </figure>
+              <Image fileName="beverage.jpg" alt="" />
               <h3>飲み物</h3>
               <p>BEVERAGE</p>
               <p>
@@ -154,13 +103,11 @@ export default function Home({ data }) {
 
       <section className="photo">
         <h2 className="sr-only">Photo</h2>
-        <figure>
-          <Img
-            fluid={data.berry.childImageSharp.fluid}
-            alt="赤く熟したベリー"
-            style={{ height: '100%' }}
-          />
-        </figure>
+        <Image
+          fileName="berry.jpg"
+          alt="赤く熟したベリー"
+          style={{ height: '100%' }}
+        />
       </section>
 
       <section>
