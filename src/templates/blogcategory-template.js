@@ -69,8 +69,10 @@ const BlogCategory = ({ data, pageContext, location }) => (
               <Link
                 to={
                   pageContext.currentPage === 2
-                    ? '/blog'
-                    : `/blog/${pageContext.currentPage - 1}`
+                    ? `/blog/category/${pageContext.categorySlug}`
+                    : `/blog/category/${pageContext.categorySlug}/${
+                        pageContext.currentPage - 1
+                      }`
                 }
                 rel="prev"
               >
@@ -81,7 +83,12 @@ const BlogCategory = ({ data, pageContext, location }) => (
           )}
           {!pageContext.isLast && (
             <li class="next">
-              <Link to={`/blog/${pageContext.currentPage + 1}`} rel="next">
+              <Link
+                to={`/blog/category/${pageContext.categorySlug}/${
+                  pageContext.currentPage + 1
+                }`}
+                rel="next"
+              >
                 <span>次のページ</span>
                 <FontAwesomeIcon icon={faChevronRight} />
               </Link>
