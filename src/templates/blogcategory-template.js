@@ -11,11 +11,12 @@ import Layout from '../components/layout'
 import MetaData from '../components/meta-data'
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query($categoryId: String!, $skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
       sort: { fields: publishDate, order: DESC }
       skip: $skip
       limit: $limit
+      filter: { category: { elemMatch: { id: { eq: $categoryId } } } }
     ) {
       edges {
         node {
@@ -34,16 +35,16 @@ export const query = graphql`
   }
 `
 
-const Blog = ({ data, pageContext, location }) => (
+const BlogCategory = ({ data, pageContext, location }) => (
   <Layout>
     <MetaData
-      pageTitle="ブログ"
-      pageDesc="ESSENTIALSのブログです。"
+      pageTitle={`CATEGORY: ${pageContext.categoryName}`}
+      pageDesc={`${pageContext.categoryName} カテゴリーの記事です`}
       pagePath={location.pathname}
     />
     <section className="content bloglist">
       <div className="container">
-        <h1 className="bar">RECENT POSTS</h1>
+        <h1 className="bar">CATEGORY: {pageContext.categoryName}</h1>
 
         <div className="posts">
           {data.allContentfulBlogPost.edges.map(({ node }) => (
@@ -68,8 +69,10 @@ const Blog = ({ data, pageContext, location }) => (
               <Link
                 to={
                   pageContext.currentPage === 2
-                    ? '/blog'
-                    : `/blog/${pageContext.currentPage - 1}`
+                    ? `/blog/category/${pageContext.categorySlug}`
+                    : `/blog/category/${pageContext.categorySlug}/${
+                        pageContext.currentPage - 1
+                      }`
                 }
                 rel="prev"
               >
@@ -80,7 +83,12 @@ const Blog = ({ data, pageContext, location }) => (
           )}
           {!pageContext.isLast && (
             <li className="next">
-              <Link to={`/blog/${pageContext.currentPage + 1}`} rel="next">
+              <Link
+                to={`/blog/category/${pageContext.categorySlug}/${
+                  pageContext.currentPage + 1
+                }`}
+                rel="next"
+              >
                 <span>次のページ</span>
                 <FontAwesomeIcon icon={faChevronRight} />
               </Link>
@@ -91,4 +99,4 @@ const Blog = ({ data, pageContext, location }) => (
     </section>
   </Layout>
 )
-export default Blog
+export default BlogCategory

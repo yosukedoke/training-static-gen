@@ -117,7 +117,9 @@ const BlogPost = ({ data, pageContext, location }) => (
               {data.contentfulBlogPost.category.map(
                 ({ id, category, categorySlug }) => (
                   <li className={categorySlug} key={id}>
-                    {category}
+                    <Link to={`/blog/category/${categorySlug}`}>
+                      {category}
+                    </Link>
                   </li>
                 )
               )}
