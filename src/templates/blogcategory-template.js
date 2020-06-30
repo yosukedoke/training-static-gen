@@ -63,9 +63,9 @@ const BlogCategory = ({ data, pageContext, location }) => (
           ))}
         </div>
 
-        <ul class="pagenation">
+        <ul className="pagenation">
           {!pageContext.isFirst && (
-            <li class="prev">
+            <li className="prev">
               <Link
                 to={
                   pageContext.currentPage === 2
@@ -82,7 +82,7 @@ const BlogCategory = ({ data, pageContext, location }) => (
             </li>
           )}
           {!pageContext.isLast && (
-            <li class="next">
+            <li className="next">
               <Link
                 to={`/blog/category/${pageContext.categorySlug}/${
                   pageContext.currentPage + 1

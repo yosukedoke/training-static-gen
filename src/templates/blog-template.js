@@ -62,9 +62,9 @@ const Blog = ({ data, pageContext, location }) => (
           ))}
         </div>
 
-        <ul class="pagenation">
+        <ul className="pagenation">
           {!pageContext.isFirst && (
-            <li class="prev">
+            <li className="prev">
               <Link
                 to={
                   pageContext.currentPage === 2
@@ -79,7 +79,7 @@ const Blog = ({ data, pageContext, location }) => (
             </li>
           )}
           {!pageContext.isLast && (
-            <li class="next">
+            <li className="next">
               <Link to={`/blog/${pageContext.currentPage + 1}`} rel="next">
                 <span>次のページ</span>
                 <FontAwesomeIcon icon={faChevronRight} />
