@@ -56,6 +56,21 @@ const Blog = ({ data, location }) => (
             </article>
           ))}
         </div>
+
+        <ul class="pagenation">
+          <li class="prev">
+            <a href="base-blog.html" rel="prev">
+              <i class="fas fa-chevron-left" />
+              <span>前のページ</span>
+            </a>
+          </li>
+          <li class="next">
+            <a href="base-blog.html" rel="next">
+              <span>次のページ</span>
+              <i class="fas fa-chevron-right" />
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   </Layout>
