@@ -1,6 +1,11 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
 
 import Layout from '../components/layout'
 import MetaData from '../components/meta-data'
@@ -29,7 +34,7 @@ export const query = graphql`
   }
 `
 
-const Blog = ({ data, location }) => (
+const Blog = ({ data, pageContext, location }) => (
   <Layout>
     <MetaData
       pageTitle="ブログ"
@@ -58,18 +63,29 @@ const Blog = ({ data, location }) => (
         </div>
 
         <ul class="pagenation">
-          <li class="prev">
-            <a href="base-blog.html" rel="prev">
-              <i class="fas fa-chevron-left" />
-              <span>前のページ</span>
-            </a>
-          </li>
-          <li class="next">
-            <a href="base-blog.html" rel="next">
-              <span>次のページ</span>
-              <i class="fas fa-chevron-right" />
-            </a>
-          </li>
+          {!pageContext.isFirst && (
+            <li class="prev">
+              <Link
+                to={
+                  pageContext.currentPage === 2
+                    ? '/blog'
+                    : `/blog/${pageContext.currentPage - 1}`
+                  }
+                rel="prev"
+              >
+                <FontAwesomeIcon icon={faChevronLeft} />
+                <span>前のページ</span>
+              </Link>
+            </li>
+          )}
+          {!pageContext.isLast && (
+            <li class="next">
+              <Link to={`/blog/${pageContext.currentPage + 1}`} rel="next">
+                <span>次のページ</span>
+                <FontAwesomeIcon icon={faChevronRight} />
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </section>
