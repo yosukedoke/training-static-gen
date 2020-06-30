@@ -6,11 +6,11 @@ import Layout from '../components/layout'
 import MetaData from '../components/meta-data'
 
 export const query = graphql`
-  query {
+  query($skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
       sort: { fields: publishDate, order: DESC }
-      skip: 0
-      limit: 6
+      skip: $skip
+      limit: $limit
     ) {
       edges {
         node {
