@@ -70,7 +70,7 @@ const Blog = ({ data, pageContext, location }) => (
                   pageContext.currentPage === 2
                     ? '/blog'
                     : `/blog/${pageContext.currentPage - 1}`
-                  }
+                }
                 rel="prev"
               >
                 <FontAwesomeIcon icon={faChevronLeft} />
