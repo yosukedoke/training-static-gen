@@ -3,14 +3,14 @@ import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
 
 const MetaData = ({
-    pageTitle = null,
-    pageDesc = null,
-    pagePath = null,
-    pageOgImage = null,
-    pageOgImageWidth = 1280,
-    pageOgImageHeight = 640,
-    pageOgImageForBlogPost = null
-  }) => {
+  pageTitle = null,
+  pageDesc = null,
+  pagePath = null,
+  pageOgImage = null,
+  pageOgImageWidth = 1280,
+  pageOgImageHeight = 640,
+  pageOgImageForBlogPost = null,
+}) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -26,13 +26,17 @@ const MetaData = ({
     }
   `)
 
-  const title = pageTitle ? `${pageTitle} | ${data.site.siteMetadata.title}` : data.site.siteMetadata.title
+  const title = pageTitle
+    ? `${pageTitle} | ${data.site.siteMetadata.title}`
+    : data.site.siteMetadata.title
   const description = pageDesc || data.site.siteMetadata.description
-  const url = pagePath ? `${data.site.siteMetadata.siteUrl}${pagePath}` : data.site.siteMetadata.siteUrl
+  const url = pagePath
+    ? `${data.site.siteMetadata.siteUrl}${pagePath}`
+    : data.site.siteMetadata.siteUrl
 
   const ogImage = pageOgImage
     ? `${data.site.siteMetadata.siteUrl}${pageOgImage}`
-    : (pageOgImageForBlogPost || `${data.site.siteMetadata.siteUrl}/thumb.jpg`)
+    : pageOgImageForBlogPost || `${data.site.siteMetadata.siteUrl}/thumb.jpg`
 
   return (
     <Helmet>

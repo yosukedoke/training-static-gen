@@ -21,7 +21,7 @@ export const query = graphql`
   query($id: String!) {
     contentfulBlogPost(id: { eq: $id }) {
       title
-      publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
+      publishDateJP: publishDate(formatString: "YYYY年MM月DD日")
       publishDate
       category {
         id
@@ -80,11 +80,17 @@ const BlogPost = ({ data, pageContext, location }) => (
   <Layout>
     <MetaData
       pageTitle={data.contentfulBlogPost.title}
-      pageDesc={`${documentToPlainTextString(data.contentfulBlogPost.content.json).slice(0, 70)}`}
+      pageDesc={`${documentToPlainTextString(
+        data.contentfulBlogPost.content.json
+      ).slice(0, 70)}`}
       pagePath={location.pathname}
       pageOgImageForBlogPost={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
-      pageOgImageWidth={data.contentfulBlogPost.eyecatch.file.details.image.width}
-      pageOgImageHeight={data.contentfulBlogPost.eyecatch.file.details.image.height}
+      pageOgImageWidth={
+        data.contentfulBlogPost.eyecatch.file.details.image.width
+      }
+      pageOgImageHeight={
+        data.contentfulBlogPost.eyecatch.file.details.image.height
+      }
     />
     <div className="eyecatch">
       <figure>
@@ -108,9 +114,15 @@ const BlogPost = ({ data, pageContext, location }) => (
           <div className="cat">
             <FontAwesomeIcon icon={faFolderOpen} />
             <ul>
-              {data.contentfulBlogPost.category.map(({ id, category, categorySlug }) => (
-                <li className={categorySlug} key={id}>{category}</li>
-              ))}
+              {data.contentfulBlogPost.category.map(
+                ({ id, category, categorySlug }) => (
+                  <li className={categorySlug} key={id}>
+                    <Link to={`/blog/category/${categorySlug}`}>
+                      {category}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </aside>
@@ -140,7 +152,6 @@ const BlogPost = ({ data, pageContext, location }) => (
             </li>
           )}
         </ul>
-
       </div>
     </article>
   </Layout>
